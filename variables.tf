@@ -11,12 +11,12 @@ variable "AmiLinux" {
 }
 
 variable "aws_access_key" {
-  default = "AKIAJYLXQNC5HENWXWHA"
+  default = ""
   description = "the user aws access key"
 }
 
 variable "aws_secret_key" {
-  default = "iUhKbxdtcyN2r+VVfO3eNo7xxi/2nEFY63dv1t/k"
+  default = ""
   description = "the user aws secret key"
 }
 variable "vpc-fullcidr" {
