@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-crud-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodejs-crud
+  template:
+    metadata:
+      labels:
+        app: nodejs-crud
+    spec:
+      containers:
+      - name: nodejs-crud
+        image: nodejs-mysql-crud:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DB_HOST
+          value: mysql
+        - name: DB_USER
+          value: root
+        - name: DB_PASSWORD
+          value: root
+        - name: DB_NAME
+          value: node_crud
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 10
